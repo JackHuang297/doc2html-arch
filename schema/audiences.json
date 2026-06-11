@@ -1,0 +1,76 @@
+{
+  "audiences": {
+    "all": {
+      "id": "all",
+      "label": "All Users",
+      "emoji": "👥",
+      "description": "默认受众，对所有人可见"
+    },
+    "foreign_national": {
+      "id": "foreign_national",
+      "label": "Foreign National",
+      "emoji": "🌏",
+      "description": "非日本籍用户"
+    },
+    "mext_scholar": {
+      "id": "mext_scholar",
+      "label": "MEXT Scholar",
+      "emoji": "🎓",
+      "description": "日本文部科学省奖学金获得者"
+    },
+    "japanese_resident": {
+      "id": "japanese_resident",
+      "label": "Japanese Resident",
+      "emoji": "🇯🇵",
+      "description": "日本居民"
+    },
+    "student": {
+      "id": "student",
+      "label": "Student",
+      "emoji": "📚",
+      "description": "学生用户"
+    },
+    "staff": {
+      "id": "staff",
+      "label": "Staff",
+      "emoji": "👨‍💼",
+      "description": "工作人员"
+    },
+    "admin": {
+      "id": "admin",
+      "label": "Administrator",
+      "emoji": "⚙️",
+      "description": "管理员"
+    },
+    "first_time": {
+      "id": "first_time",
+      "label": "First Time User",
+      "emoji": "🆕",
+      "description": "首次使用用户"
+    },
+    "returning_user": {
+      "id": "returning_user",
+      "label": "Returning User",
+      "emoji": "🔄",
+      "description": "重复使用用户"
+    }
+  },
+  "hierarchies": {
+    "role_hierarchy": {
+      "description": "基于角色的层级关系",
+      "structure": {
+        "admin": ["staff", "student"],
+        "staff": ["student"],
+        "student": ["user"]
+      }
+    },
+    "status_hierarchy": {
+      "description": "基于用户状态的层级关系",
+      "structure": {
+        "mext_scholar": ["foreign_national"],
+        "japanese_resident": ["user"],
+        "first_time": ["user"]
+      }
+    }
+  }
+}

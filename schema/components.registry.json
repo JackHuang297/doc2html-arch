@@ -1,0 +1,93 @@
+{
+  "components": {
+    "step-card": {
+      "name": "step-card",
+      "description": "顺序步骤卡片，用于handbook和announcement",
+      "props": {
+        "number": {"type": "integer", "required": true},
+        "title": {"type": "string", "required": true},
+        "description": {"type": "string"},
+        "rows": {"type": "array", "items": {"type": "object", "properties": {"icon": {"type": "string"}, "text": {"type": "string"}, "highlight": {"type": "string"}}}},
+        "deadline": {"type": "string"},
+        "note": {"type": "string"},
+        "warning": {"type": "string"},
+        "audiences": {"type": "array", "items": {"type": "string"}}
+      },
+      "htmlClass": "step-card",
+      "jsHooks": ["data-step-number", "data-audience"],
+      "cssVariables": ["--step-border-color", "--step-bg-color"]
+    },
+    "checklist": {
+      "name": "checklist",
+      "description": "可勾选的待办列表，支持localStorage持久化",
+      "props": {
+        "id": {"type": "string", "required": true},
+        "text": {"type": "string", "required": true},
+        "deadline": {"type": "string"},
+        "checked": {"type": "boolean", "default": false},
+        "audiences": {"type": "array"}
+      },
+      "htmlClass": "checklist-item",
+      "jsHooks": ["data-checklist-id", "data-audience"],
+      "localStorage": "handbook_checklist_{docId}"
+    },
+    "accordion": {
+      "name": "accordion",
+      "description": "可折叠内容块，用于policy和FAQ",
+      "props": {
+        "id": {"type": "string", "required": true},
+        "title": {"type": "string", "required": true},
+        "content": {"type": "string", "required": true},
+        "defaultOpen": {"type": "boolean", "default": false},
+        "tag": {"type": "string"},
+        "audiences": {"type": "array"}
+      },
+      "htmlClass": "accordion-item",
+      "jsHooks": ["data-accordion-id", "data-audience", "aria-expanded"],
+      "localStorage": "policy_accordion_{docId}"
+    },
+    "info-box": {
+      "name": "info-box",
+      "description": "信息提示框",
+      "props": {
+        "variant": {"type": "string", "enum": ["info", "success", "warning", "danger", "accent"], "default": "info"},
+        "title": {"type": "string"},
+        "content": {"type": "string", "required": true},
+        "audiences": {"type": "array"}
+      },
+      "htmlClass": "info-box info-box-{variant}",
+      "cssVariables": ["--infobox-border-color", "--infobox-bg-color", "--infobox-text-color"]
+    },
+    "timeline": {
+      "name": "timeline",
+      "description": "时间轴，用于announcement和process",
+      "props": {
+        "items": {"type": "array", "required": true, "items": {"type": "object", "properties": {"date": {"type": "string"}, "event": {"type": "string"}, "note": {"type": "string"}}}},
+        "audiences": {"type": "array"}
+      },
+      "htmlClass": "timeline-container",
+      "jsHooks": ["data-timeline-item"]
+    },
+    "reference-box": {
+      "name": "reference-box",
+      "description": "交叉引用框，用于policy",
+      "props": {
+        "targetId": {"type": "string", "required": true},
+        "text": {"type": "string", "required": true},
+        "audiences": {"type": "array"}
+      },
+      "htmlClass": "reference-box",
+      "jsHooks": ["data-ref-target", "data-audience"]
+    },
+    "toc-sidebar": {
+      "name": "toc-sidebar",
+      "description": "目录导航侧边栏",
+      "props": {
+        "items": {"type": "array", "required": true, "items": {"type": "object", "properties": {"id": {"type": "string"}, "title": {"type": "string"}, "level": {"type": "integer"}}}},
+        "sticky": {"type": "boolean", "default": true}
+      },
+      "htmlClass": "toc-sidebar",
+      "jsHooks": ["data-toc-link"]
+    }
+  }
+}

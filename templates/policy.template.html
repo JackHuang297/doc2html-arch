@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{metadata.title}}</title>
+    <link rel="stylesheet" href="/styles/policy.css">
+    <link rel="stylesheet" href="/styles/theme-{{metadata.theme}}.css">
+</head>
+<body class="policy-layout theme-{{metadata.theme}}">
+    <div class="container">
+        <aside class="sidebar sticky">
+            <nav class="toc-sidebar">
+                <h3>Contents</h3>
+                <ul id="toc-list">
+                    {{#sections}}
+                    <li><a href="#{{id}}" data-toc-link data-section="{{id}}">{{title}}</a></li>
+                    {{/sections}}
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="policy-content">
+            <header class="policy-header">
+                <h1>{{metadata.title}}</h1>
+                <div class="policy-meta">
+                    <p>Version: {{metadata.version}}</p>
+                    <p>Last Updated: {{metadata.lastUpdated}}</p>
+                </div>
+            </header>
+            
+            {{#sections}}
+            <section id="{{id}}" class="policy-section" data-audience="{{audiences}}" data-tag="{{tag}}">
+                <h2>{{title}}</h2>
+                <div class="section-body">
+                    {{#content}}
+                    {{#if type == 'accordion'}}
+                    <div class="accordion-group" data-accordion-id="{{id}}">
+                        <button class="accordion-trigger" data-toggle>{{title}}</button>
+                        <div class="accordion-content" aria-expanded="false">
+                            {{text}}
+                        </div>
+                    </div>
+                    {{else if type == 'reference'}}
+                    <div class="reference-box" data-ref-target="{{targetId}}">
+                        <a href="#{{targetId}}">{{ text }}</a>
+                    </div>
+                    {{else}}
+                    <div class="content-block">{{text}}</div>
+                    {{/if}}
+                    {{/content}}
+                </div>
+            </section>
+            {{/sections}}
+        </main>
+    </div>
+    <script src="/scripts/policy.js"></script>
+</body>
+</html>

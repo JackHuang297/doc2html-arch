@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+  doc2html:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: doc2html-arch
+    restart: unless-stopped
+    ports:
+      - '${PORT:-3000}:3000'
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      PORT: ${PORT:-3000}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      LOG_FILE_PATH: /app/logs/app.log
+      MAX_FILE_SIZE_BYTES: ${MAX_FILE_SIZE_BYTES:-52428800}
+    volumes:
+      # Mount logs directory for log rotation / persistence
+      - doc2html-logs:/app/logs
+      # Mount upload directory for batch conversions
+      - ${UPLOAD_DIR:-./uploads}:/app/uploads:ro
+      # Mount output directory
+      - ${OUTPUT_DIR:-./output}:/app/output
+    healthcheck:
+      test: ['CMD', 'wget', '-qO-', 'http://localhost:3000/health']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    mem_limit: 512m
+    memswap_limit: 1g
+    cpu_shares: 512
+    cpus: 1.0
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  doc2html-logs:

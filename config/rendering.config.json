@@ -1,0 +1,99 @@
+{
+  "rendering": {
+    "engine": "mustache",
+    "cacheEnabled": true,
+    "cacheTTL": 3600,
+    "minifyOutput": true,
+    "sourceMapEnabled": false,
+    "encoding": "utf-8"
+  },
+  "componentLoading": {
+    "strategy": "lazy",
+    "batchSize": 10,
+    "timeout": 5000,
+    "fallbackComponent": "error-boundary"
+  },
+  "cssProcessing": {
+    "cssInJS": false,
+    "purgeUnusedCSS": true,
+    "criticalCSS": true,
+    "sourceMap": false,
+    "vendor": {
+      "prefix": true,
+      "browsers": ["last 2 versions", "> 1%"]
+    }
+  },
+  "scriptProcessing": {
+    "bundler": "webpack",
+    "splitting": {
+      "common": true,
+      "vendor": true,
+      "async": true
+    },
+    "sourceMap": false,
+    "minify": true
+  },
+  "performanceOptimization": {
+    "lazyLoadImages": true,
+    "lazyLoadScripts": true,
+    "preloadCritical": true,
+    "inlineSmallAssets": true,
+    "maxInlineSize": 10240,
+    "compressionAlgorithm": "gzip"
+  },
+  "audiences": {
+    "filteringStrategy": "server-side",
+    "fallbackAudience": "all",
+    "cacheByAudience": true
+  },
+  "a11y": {
+    "enableAriaLabels": true,
+    "enableKeyboardNav": true,
+    "contrastRatio": 4.5,
+    "validateHTML": true
+  },
+  "themes": {
+    "default": {
+      "colors": {
+        "primary": "#0066cc",
+        "secondary": "#f0f0f0",
+        "accent": "#ff6600",
+        "error": "#cc0000"
+      }
+    },
+    "minimal": {
+      "colors": {
+        "primary": "#000000",
+        "secondary": "#ffffff",
+        "accent": "#666666",
+        "error": "#990000"
+      }
+    },
+    "dark": {
+      "colors": {
+        "primary": "#ffffff",
+        "secondary": "#1a1a1a",
+        "accent": "#ffcc00",
+        "error": "#ff4444"
+      }
+    }
+  },
+  "outputFormats": {
+    "html": {
+      "enabled": true,
+      "extension": ".html",
+      "mimeType": "text/html"
+    },
+    "pdf": {
+      "enabled": true,
+      "engine": "puppeteer",
+      "extension": ".pdf",
+      "mimeType": "application/pdf"
+    },
+    "markdown": {
+      "enabled": false,
+      "extension": ".md",
+      "mimeType": "text/markdown"
+    }
+  }
+}

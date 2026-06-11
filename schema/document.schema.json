@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Document Schema - doc2html通用中间格式",
+  "type": "object",
+  "required": ["metadata", "sections"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["title", "docType", "audiences"],
+      "properties": {
+        "title": {"type": "string"},
+        "docType": {"type": "string", "enum": ["handbook", "policy", "technical", "announcement"]},
+        "version": {"type": "string"},
+        "theme": {"type": "string", "enum": ["default", "minimal", "dark"], "default": "default"},
+        "audiences": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "label"],
+            "properties": {"id": {"type": "string"}, "label": {"type": "string"}, "emoji": {"type": "string"}}
+          }
+        }
+      }
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "contentType"],
+        "properties": {
+          "id": {"type": "string"},
+          "title": {"type": "string"},
+          "contentType": {"type": "string", "enum": ["sequential_steps", "checklist", "timeline", "accordion", "reference", "table", "text", "mixed"]},
+          "audiences": {"type": "array", "items": {"type": "string"}},
+          "content": {"type": "array"}
+        }
+      }
+    }
+  }
+}

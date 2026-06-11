@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{metadata.title}}</title>
+    <link rel="stylesheet" href="/styles/announcement.css">
+    <link rel="stylesheet" href="/styles/theme-{{metadata.theme}}.css">
+</head>
+<body class="announcement-layout theme-{{metadata.theme}}">
+    <div class="announcement-container">
+        <header class="announcement-header">
+            <h1>{{metadata.title}}</h1>
+            <p class="date">{{metadata.lastUpdated}}</p>
+        </header>
+        
+        <main class="announcement-body">
+            {{#sections}}
+            <section class="announcement-section" data-audience="{{audiences}}">
+                <h2>{{emoji}} {{title}}</h2>
+                {{#content}}
+                {{#if contentType == 'sequential_steps'}}
+                <div class="steps-container">
+                    {{#steps}}
+                    <div class="step-card" data-step-number="{{number}}" data-audience="{{audiences}}">
+                        <div class="step-header">
+                            <span class="step-number">{{number}}</span>
+                            <h3>{{title}}</h3>
+                        </div>
+                        <div class="step-body">{{description}}</div>
+                        {{#if deadline}}
+                        <div class="deadline">期限: {{deadline}}</div>
+                        {{/if}}
+                    </div>
+                    {{/steps}}
+                </div>
+                {{else if contentType == 'timeline'}}
+                <div class="timeline-container">
+                    {{#items}}
+                    <div class="timeline-item">
+                        <div class="timeline-date">{{date}}</div>
+                        <div class="timeline-event">{{event}}</div>
+                    </div>
+                    {{/items}}
+                </div>
+                {{else}}
+                <div class="content-block">{{text}}</div>
+                {{/if}}
+                {{/content}}
+            </section>
+            {{/sections}}
+        </main>
+    </div>
+    <script src="/scripts/announcement.js"></script>
+</body>
+</html>

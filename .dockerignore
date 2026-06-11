@@ -1,0 +1,59 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+
+# Build output
+dist/
+coverage/
+
+# Development files
+.git/
+.gitignore
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Test files
+*.test.ts
+*.spec.ts
+__tests__/
+__mocks__/
+
+# Documentation source (not needed in image)
+*.md
+!README.md
+docs/
+ARCHITECTURE.md
+FEATURES.md
+DEPLOYMENT.md
+DEPLOYMENT_VERIFICATION.md
+CHECKLIST.md
+CONTRIBUTING.md
+SECURITY.md
+CI_CD_CHECKLIST.md
+
+# CI/CD
+.github/
+
+# Scripts (not needed in production)
+scripts/
+
+# Temp / build artifacts
+*.tmp
+*.bak
+.uploads/
+.output/

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{metadata.title}}</title>
+    <link rel="stylesheet" href="/styles/handbook.css">
+    <link rel="stylesheet" href="/styles/theme-{{metadata.theme}}.css">
+</head>
+<body class="handbook-layout theme-{{metadata.theme}}">
+    <div class="container">
+        <aside class="sidebar">
+            <nav class="toc-sidebar" data-toc-container="true">
+                <h3>目录</h3>
+                <ul>
+                    {{#sections}}
+                    <li><a href="#{{id}}" data-toc-link>{{title}}</a></li>
+                    {{/sections}}
+                </ul>
+            </nav>
+            <div class="audience-selector">
+                <label>表示対象: </label>
+                <select id="audience-filter">
+                    {{#audiences}}
+                    <option value="{{id}}">{{emoji}} {{label}}</option>
+                    {{/audiences}}
+                </select>
+            </div>
+        </aside>
+        
+        <main class="content">
+            <header class="doc-header">
+                <h1>{{metadata.title}}</h1>
+                <p class="meta">最終更新: {{metadata.lastUpdated}}</p>
+            </header>
+            
+            {{#sections}}
+            <section id="{{id}}" class="section" data-audience="{{audiences}}">
+                <h2>{{emoji}} {{title}}</h2>
+                <div class="section-content">
+                    {{#content}}
+                    {{> component-{{type}} }}
+                    {{/content}}
+                </div>
+            </section>
+            {{/sections}}
+        </main>
+    </div>
+    <script src="/scripts/handbook.js"></script>
+    <script src="/scripts/audience-filter.js"></script>
+</body>
+</html>
